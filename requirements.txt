@@ -147,3 +147,4 @@ uuid==1.30
 waitress==3.0.0
 whisperx @ git+https://github.com/m-bain/whisperx.git@f2da2f858e99e4211fe4f64b5f2938b007827e17
 yarl==1.9.4
+python-dotenv
