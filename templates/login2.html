@@ -1,0 +1,280 @@
+<!-- YourApp/templates/registration/login.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/6c4bbd468f.js" crossorigin="anonymous"></script>
+  <title>Sign Up</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100px;
+      background-color: rgb(6, 6, 46);
+
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      list-style: none;
+      margin: 0 23px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+    }
+
+    nav ul li a:hover {
+
+      color: rgb(204, 204, 235);
+      font-size: 1.02rem;
+    }
+
+    .left {
+      font-size: 1.5rem;
+    }
+
+    .firstSection {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 110px 0;
+    }
+
+    .firstSection>div {
+      width: 30%;
+
+    }
+
+    .leftSection {
+      font-size: 2.3rem;
+    }
+
+    .leftSection buttons {
+      padding: 50px 0px;
+    }
+
+    .leftSection .btn {
+
+      padding: 10px 35px;
+      background-color: white;
+      border: 3px solid white;
+      border-radius: 30px;
+      color: rgb(6, 6, 46);
+      font-size: 20px;
+      cursor: pointer;
+      margin: 30px 5px;
+
+    }
+
+    .rightSection img {
+      width: 100%;
+      margin: 50px -70px;
+
+    }
+
+    .purple {
+
+      color: white;
+      font-size: 3.8rem;
+    }
+
+    #element {
+      color: white;
+    }
+
+
+    main hr {
+
+      border: 0;
+      background-color: rgb(101, 143, 222);
+      height: 1.2px;
+      margin: 40px 84px;
+
+
+    }
+
+    .text-grey {
+
+      color: rgb(116, 116, 217);
+    }
+
+    .logo {
+      margin: 20px;
+      padding: 30px;
+      margin-left: -730px;
+    }
+
+    body {
+      background-color: rgb(2, 2, 54);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    form {
+      background-color: #2e5684;
+      padding: 20px;
+      border-radius: 35px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      margin-left: 10%;
+      margin-top: 6%;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+    }
+
+    button {
+      background-color: #3fc1f5;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 72px;
+      width: 245px;
+      margin: 8px 75px;
+    }
+
+    button_login {
+      background-color: #184253;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 72px;
+      width: 245px;
+      margin: 8px 75px;
+    }
+
+    button:hover {
+      background-color: rgb(2, 2, 54);
+    }
+
+    .btn a {
+      text-decoration: none;
+      color: white;
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", sans-serif
+    }
+
+    body,
+    html {
+      height: 100%;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="w3-top">
+      <div class="w3-bar w3-white w3-card" id="myNavbar">
+        <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-wide">
+          <img src="{% static 'app/logo.png' %}" alt="Logo" style="height: 50px; width: 50px; margin-right: 10px;">
+        </a>
+        <!-- Right-sided navbar links -->
+        <div class="w3-right w3-hide-small">
+          <a href="{% url 'home' %}" class="w3-bar-item w3-button">ABOUT</a>
+          <a href="{% url 'home' %}" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+          <a href="{% url 'combined_view' %}" class="w3-bar-item w3-button"><i class="fa fa-th"></i> Video Translation</a>
+          <a href="{% url 'combined_view' %}" class="w3-bar-item w3-button"><i class="fa-brands fa-rocketchat"></i>
+            ChatBot</a>
+          <a href="{% url 'home' %}" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+        </div>
+        <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+          onclick="w3_open()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Sidebar on small screens when clicking the menu icon -->
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+      style="display:none" id="mySidebar">
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close
+        ×</a>
+      <a href="{% url 'home' %}" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="{% url 'home' %}" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+      <a href="{% url 'combined_view' %}" onclick="w3_close()" class="w3-bar-item w3-button">Video Translation</a>
+      <a href="{% url 'combined_view' %}" onclick="w3_close()" class="w3-bar-item w3-button">Chatbot</a>
+      <a href="{% url 'home' %}" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+    </nav>
+  </header>
+
+  <form method="post">
+    {% csrf_token %}
+    <label for="email">Email:</label>
+    <input type="email" name="email" required><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required><br>
+    <button type="submit">Login</button>
+  </form>
+  <p>Forgot your password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
+
+  {% comment %}
+  <script>
+    function submitForm() {
+      var username = document.getElementById('username').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+
+      // Here, you can perform additional client-side validation if needed
+
+      // Assuming you want to send the data to a server, you can use AJAX or fetch API
+      // For simplicity, let's just log the data to the console
+      console.log('Username: ' + username);
+      console.log('Email: ' + email);
+      console.log('Password: ' + password);
+    }
+  </script> {% endcomment %}
+</body>
+
+</html>
+
+

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech Translation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Ubuntu:ital,wght@1,300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/6c4bbd468f.js" crossorigin="anonymous"></script>
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Add your custom styling for the chat container -->
+    <style>
+        #chat-container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 25px;
+            border: 4px solid rgb(179, 27, 182);
+        }
+
+        /* Style for the chat history */
+        #chat-history {
+            height: 200px;
+            overflow-y: scroll;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        /* Style for the input box and buttons */
+        #query-input {
+            width: 70%;
+            padding: 8px;
+            margin-right: 5px;
+            color: black;
+            background-color:burlywood;
+            border-radius: 10px;
+            border: 1px solid rgb(165, 6, 168);;
+
+        }
+
+        #submit-btn,
+        #clear-btn {
+            padding: 8px;
+            cursor: pointer;
+            padding: 8px;
+
+            font-weight: bold;
+            background-color: rgb(165, 6, 168);
+            color: white;
+
+            border-radius: 10px;
+            width: 80px;
+        }
+
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+
+        }
+
+        .increase {
+            font-size: 26px;
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .Logo {
+            width: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .Logo img {
+            width: 60%;
+            border-radius: 50px;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            cursor: pointer;
+
+
+        }
+
+        .nav-list {
+            width: 70%;
+            display: flex;
+            align-items: center;
+            /* background-color: rgb(152, 41, 89);*/
+
+
+        }
+
+        .nav-list li {
+            list-style: none;
+            padding: 26px 30px;
+
+
+        }
+
+        .nav-list li a {
+
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .rightnav {
+            width: 30%;
+            /* background-color: blueviolet;*/
+            text-align: right;
+        }
+
+        #search {
+            padding: 2px;
+            font-size: 17px;
+            border: 2px solid grey;
+            border-radius: 3px;
+
+        }
+
+
+        .box-main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 50%;
+            margin: auto;
+            height: 90%;
+        }
+
+        .firstsection {
+            height: 100vh;
+        }
+
+        .firsthalf {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .secondhalf {
+            width: 30%;
+        }
+
+        .secondhalf img {
+            width: 70%;
+            border: 4px solid rgb(179, 27, 182);
+            border-radius: 116px;
+        }
+
+        .text-big {
+            font-size: 50px;
+
+        }
+
+        .text-small {
+            font-size: 20px;
+
+        }
+
+        .btn {
+
+            padding: 8px 20px;
+            margin: 6px 7px;
+            border: 2px solid purple;
+            border-radius: 3px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: none;
+            color: white;
+            cursor: pointer;
+
+        }
+
+        .btn-sn {
+
+            padding: 2px 10px;
+            vertical-align: middle;
+
+
+        }
+
+        .btn a {
+
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .section {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            max-width: 82%;
+            margin: auto;
+            font-family: 'Ubuntu', sans-serif;
+            background-color: rgba(208, 173, 240, 0.518);
+            padding: 10px;
+
+        }
+
+        .section-Left {
+            flex-direction: row-reverse;
+        }
+
+        .paras {
+            padding: 0px 100px;
+        }
+
+        .sectionsubTag {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+        .thumbnail img {
+            border: 4px solid purple;
+            border-radius: 100px;
+            width: 300px;
+            margin-top: 19px;
+            margin: 0px 38px;
+        }
+
+        .sectionTag {
+            padding: 16px 0px;
+        }
+
+        .contact {
+            background-color: rgba(214, 198, 222, 0.678);
+            height: 100vh;
+
+        }
+
+        .text-center {
+            text-align: center;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 35px;
+            padding: 30px;
+        }
+
+        .form {
+            max-width: 62%;
+            margin: auto;
+        }
+
+        .form-input {
+            width: 100%;
+            font-size: 17px;
+            border: 2px solid purple;
+            border-radius: 6px;
+            margin: 6px 0px;
+            padding: 5px 3px;
+            font-family: 'Ubuntu', sans-serif;
+
+        }
+
+        .btn-dark {
+            background-color: rgba(116, 42, 185, 0.649);
+            color: rgb(219, 231, 232);
+            border-radius: 35px;
+            font-family: 'Ubuntu', sans-serif;
+
+        }
+
+        .a {
+
+            color: white;
+            text-align: center;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 20px;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .burger {
+            display: none;
+            position: absolute;
+            cursor: pointer;
+            right: 5%;
+            top: 15px;
+        }
+
+        .line {
+            width: 33px;
+            background-color: white;
+            height: 4px;
+            margin: 5px 3px;
+
+        }
+
+
+        /* Services Section */
+        #services {
+
+            margin: 34px;
+            display: flex;
+            color: white;
+
+        }
+
+        #services .box {
+
+            border: 2px solid white;
+            padding: 34px;
+            margin: 25px 6px;
+            border-radius: 23px;
+            background-color: rgb(83, 118, 118);
+            margin-bottom: 20px;
+        }
+
+        #services .box img {
+
+            height: 230px;
+            margin: auto;
+            display: block;
+        }
+
+        #services .box p {
+
+            font-family: 'Poppins', sans-serif;
+        }
+
+
+        .h-primary {
+
+            font-size: 3.8rem;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .h-secondary {
+
+            font-size: 2rem;
+            padding: 12px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .user-message {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .bot-message {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 5px;
+            color: #333;
+        }
+
+        @media only screen and (max-width:1228px) {
+            .nav-list {
+                flex-direction: column;
+            }
+
+            .box-main {
+                flex-direction: column;
+                max-width: 100%;
+            }
+
+            .navbar {
+                flex-direction: column;
+                transition: all 0.7s ease-out;
+                height: 478px;
+            }
+
+            .btn-sn {
+                flex-direction: column;
+            }
+
+            .rightnav {
+
+                text-align: center;
+            }
+
+            #search {
+                width: 100%;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .h-nav-resp {
+                height: 72px;
+            }
+
+            .v-class-resp {
+                opacity: 0;
+            }
+
+            .section {
+                flex-direction: column-reverse;
+            }
+
+            .text-big {
+                text-align: center;
+            }
+
+            .text-small {
+                text-align: center;
+            }
+
+            .increase {
+                text-align: center;
+            }
+
+            .buttons {
+                text-align: center;
+            }
+
+            .paras {
+                padding: 0px;
+            }
+
+
+            #services {
+
+                flex-direction: column;
+
+            }
+
+            #services .box {
+
+                padding: 14px;
+                margin: 2px 0px;
+                margin-bottom: 20px;
+
+            }
+
+            .form-input {
+                width: 100%;
+                font-size: 14px;
+                border: 2px solid purple;
+                border-radius: 6px;
+                margin: 5px 0px;
+                padding: 5px 3px;
+                font-family: 'Ubuntu', sans-serif;
+
+            }
+
+            .Logo {
+                width: 60%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="w3-top">
+          <div class="w3-bar w3-white w3-card" id="myNavbar">
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-wide">
+              <img src="{% static 'app/logo.png' %}" alt="Logo" style="height: 50px; width: 50px; margin-right: 10px;">
+            </a>
+            <!-- Right-sided navbar links -->
+            <div class="w3-right w3-hide-small">
+              <a href="{% url 'home' %}" class="w3-bar-item w3-button">ABOUT</a>
+              <a href="{% url 'home' %}" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+              <a href="{% url 'translation' %}" class="w3-bar-item w3-button"><i class="fa fa-th"></i> Video Translation</a>
+              <a href="{% url 'chatbot' %}" class="w3-bar-item w3-button"><i class="fa-brands fa-rocketchat"></i>
+                ChatBot</a>
+              <a href="{% url 'home' %}" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+            </div>
+            <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+    
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+              onclick="w3_open()">
+              <i class="fa fa-bars"></i>
+            </a>
+          </div>
+        </div>
+    
+        <!-- Sidebar on small screens when clicking the menu icon -->
+        <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+          style="display:none" id="mySidebar">
+          <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close
+            ×</a>
+          <a href="{% url 'home' %}" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+          <a href="{% url 'home' %}" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+          <a href="{% url 'translation' %}" onclick="w3_close()" class="w3-bar-item w3-button">Video Translation</a>
+          <a href="{% url 'chatbot' %}" onclick="w3_close()" class="w3-bar-item w3-button">Chatbot</a>
+          <a href="{% url 'home' %}" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+        </nav>
+      </header>
+
+    <p class="h-primary center" style="padding-top: 70px;">Chatbot</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="chat-container">
+
+        <div id="chat-history"></div>
+        <input type="text" id="query-input" placeholder="Type your message!!!">
+        <button id="submit-btn">Submit</button>
+        <button id="clear-btn">Clear</button>
+    </div>
+
+    <!-- Include CSRF token for AJAX requests -->
+    <script>
+        // Function to get CSRF token from cookies
+        function getCSRFToken() {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, 'csrftoken'.length + 1) === ('csrftoken' + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring('csrftoken'.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // Set CSRF token for AJAX requests
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                    // Only send the token to relative URLs i.e. locally.
+                    xhr.setRequestHeader("X-CSRFToken", getCSRFToken());
+                }
+            }
+        });
+    </script>
+
+    <!-- Include your custom chatbot.js file -->
+    <script src="{% static 'js/chatbot.js' %}"></script>
+
+</body>
+
+</html>

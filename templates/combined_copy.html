@@ -1,0 +1,1041 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/6c4bbd468f.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Load the static tag for including static files -->
+    {% load static %}
+
+    <title>NatLearn!</title>
+
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+        }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
+
+
+
+
+
+        /* /////////////////////////////////////// */
+        /* Custom CSS to make rows take full height */
+        .full-height {
+            height: 100vh;
+            /* 100% of viewport height */
+        }
+
+        .chatbot-container {
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2%;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            overflow-y: auto;
+            margin: 2%;
+            width: 97%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 1.3);
+            border: 2px solid #094659;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 12px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #e5e5ea;
+            color: black;
+            border-radius: 5px;
+            padding: 8px 12px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .chat-input-container {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .chat-input {
+
+            flex: 1;
+            padding: 13px;
+            border-radius: 5px;
+            border: 3px solid #1896ef;
+            /* width: 47%; */
+            outline: none;
+            margin-top: 9px;
+            margin-right: 9px;
+        }
+
+        .send-btn {
+            width: 100px;
+            height: 40px;
+            margin-left: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #chat-history {
+            height: 95%;
+            overflow-y: scroll;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        .full-height {
+
+            background-color: #212121;
+        }
+
+
+        .left_div {
+            /*border: 5px solid blue;*/
+            margin-top: 3.5%;
+        }
+
+        .left_div1 {
+            border: 5px solid rgb(6, 6, 6);
+            margin-top: 3.5%;
+
+        }
+
+        .right_div {
+            /*  border: 5px solid blue;*/
+            margin-top: 3.5%;
+        }
+
+        .video {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            background-color: black;
+            border: 2px solid black;
+        }
+
+
+
+        form {
+
+            margin: 41px;
+            margin-left: 0px;
+            padding: 20px;
+
+            border-radius: 52px;
+            background-color: blue;
+            width: 100%;
+            height: -23px;
+            display: flex;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 1.3);
+            border: 2px solid #094659;
+            padding: 25px;
+            color: black;
+            border: 4px solid #020024;
+            background: #020024;
+            background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
+
+        }
+
+        label {
+            /* Add styles for labels */
+            display: block;
+            margin-bottom: 0px;
+            font-size: 25px;
+            color: white;
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            font-weight: 900;
+            margin-left: 11px;
+            margin-top: 2%;
+
+        }
+
+        input {
+            /* Add styles for input fields and buttons */
+            margin-bottom: 16px;
+            padding: 0px;
+        }
+
+
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: -1px 33px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 22px;
+            cursor: pointer;
+            margin-top: 17px;
+            border-radius: 20px;
+            height: 45px;
+            width: 150px;
+            margin-bottom: 16px;
+            padding: 8px;
+            width: 100px;
+        }
+
+
+        #id_title {
+            padding: 6px;
+
+            height: 0%;
+            margin-left: 1%;
+            border: 2px solid rgb(23 158 189);
+            border-radius: 7px;
+            margin-top: 2%;
+            width: 2000%;
+        }
+
+
+        #id_source_lang {
+
+            border: 2px solid rgb(23 158 189);
+            font-size: 25px;
+            width: 479%;
+            height: 0%;
+            border-radius: 7px;
+            margin-left: 10px;
+            margin-top: 2%;
+        }
+
+
+        #id_target_lang {
+
+            border: 2px solid purple;
+            font-size: 25px;
+            width: 479%;
+            height: 0%;
+            border-radius: 7px;
+            margin-left: 10px;
+            margin-top: 2%;
+        }
+
+        #id_voice_type {
+
+            border: 2px solid purple;
+            font-size: 20px;
+            margin-top: 2%;
+            margin-left: 10px;
+            height: 5%;
+            border-radius: 9px;
+            width: 3200%;
+            margin-right: -17px;
+        }
+
+
+
+        #id_uv {
+
+            width: 2870%;
+            margin-left: 1%;
+            font-size: 19px;
+            background-color: #e6dede;
+            border: 2px solid rgb(23 158 189);
+            height: 37px;
+            border-radius: 7px;
+            align-content: center;
+            color: black;
+            margin-top: 2%;
+        }
+
+        .btn1 {
+
+            height: 50px;
+            width: 105px;
+            border-radius: 11px;
+            margin-left: 35px;
+            border: 2px solid rgb(23 158 189);
+            margin-top: 1%;
+            margin-right: 2px;
+            background-color: #362a2a;
+        }
+
+        #clear-btn {
+
+            background-color: #362a2a;
+            font-size: 23px;
+
+        }
+
+        #submit-btn {
+
+            background-color: blue;
+            height: 45px;
+
+        }
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #212121;
+            color: #fff;
+            font-family: monospace, serif;
+            letter-spacing: 0.05em;
+        }
+
+        h1 {
+            font-size: 23px;
+        }
+
+        .form {
+            width: 300px;
+            padding: 64px 15px 24px;
+            margin: 0 auto;
+        }
+
+        .form .control {
+            margin: 0 0 24px;
+        }
+
+        .form .control input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            font-family: monospace, serif;
+            letter-spacing: 0.05em;
+            font-size: 16px;
+        }
+
+        .form .control input:hover,
+        .form .control input:focus {
+            outline: none;
+            border: 0;
+        }
+
+        .form .btn {
+            width: 100%;
+            display: block;
+            padding: 14px 16px;
+            background: transparent;
+            outline: none;
+            border: 0;
+            color: #fff;
+            letter-spacing: 0.1em;
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 16px;
+
+        }
+
+        .block-cube {
+            position: relative;
+        }
+
+        .block-cube .bg-top {
+            position: absolute;
+            height: 10px;
+            background: #020024;
+            background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
+            bottom: 100%;
+            left: 5px;
+            right: -5px;
+            transform: skew(-45deg, 0);
+            margin: 0;
+        }
+
+        .block-cube .bg-top .bg-inner {
+            bottom: 0;
+        }
+
+        .block-cube .bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: #020024;
+            background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
+        }
+
+        .block-cube .bg-right {
+            position: absolute;
+            background: #020024;
+            background: #00d4ff;
+            top: -5px;
+            z-index: 0;
+            bottom: 5px;
+            width: 10px;
+            left: 100%;
+            transform: skew(0, -45deg);
+        }
+
+        .block-cube .bg-right .bg-inner {
+            left: 0;
+        }
+
+        .block-cube .bg .bg-inner {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .block-cube .bg-inner {
+            background: #212121;
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            right: 2px;
+            bottom: 2px;
+        }
+
+        .block-cube .text {
+            position: relative;
+            z-index: 2;
+            color: white;
+
+            font-size: 20px;
+
+        }
+
+        .block-cube.block-input input {
+            position: relative;
+            z-index: 2;
+        }
+
+        .block-cube.block-input input:focus~.bg-right .bg-inner,
+        .block-cube.block-input input:focus~.bg-top .bg-inner,
+        .block-cube.block-input input:focus~.bg-inner .bg-inner {
+            top: 100%;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .block-cube.block-input .bg-top,
+        .block-cube.block-input .bg-right,
+        .block-cube.block-input .bg {
+            background: rgba(255, 255, 255, 0.5);
+            transition: background 0.2s ease-in-out;
+        }
+
+        .block-cube.block-input .bg-right .bg-inner,
+        .block-cube.block-input .bg-top .bg-inner {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .block-cube.block-input:focus .bg-top,
+        .block-cube.block-input:focus .bg-right,
+        .block-cube.block-input:focus .bg,
+        .block-cube.block-input:hover .bg-top,
+        .block-cube.block-input:hover .bg-right,
+        .block-cube.block-input:hover .bg {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .block-cube.block-cube-hover:focus .bg .bg-inner,
+        .block-cube.block-cube-hover:hover .bg .bg-inner {
+            top: 100%;
+        }
+
+
+
+        /*******************************************************/
+
+        h1 {
+
+            height: 55px;
+            color: black;
+            text-align: center;
+
+            margin-top: 30px;
+
+        }
+
+        .RS_h1 {
+
+            background: linear-gradient(90deg, #020024 0%, #340979 37%, #235299 94%);
+            height: 80px;
+            margin-top: 4px;
+            text-align: center;
+            padding: 19px;
+            font-size: 28px;
+            padding-top: 7px;
+            border-radius: 11px;
+            color: white;
+
+        }
+
+        .RS_h2 {
+
+            background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
+            background-color: #020024;
+            height: 80px;
+            margin-top: 45px;
+            text-align: center;
+            padding: 19px;
+            font-size: 28px;
+            padding-top: 7px;
+            color: white;
+            border-radius: 11px;
+
+        }
+
+        .ul_style {
+            margin: 25px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+
+        th {
+
+            border-radius: 3px;
+            border: 1px solid #f9f9f9;
+            text-align: left;
+            padding: 9px;
+            font-size: 20px;
+            max-width: 6px;
+            background-color: #020024;
+        }
+
+
+        .right-section {
+            background-color: #f2f2f2;
+            color: white;
+            text-align: center;
+            padding: 51px;
+            overflow: auto;
+            width: 111%;
+            margin-left: -16px;
+
+            margin-right: -167px;
+        }
+
+        .one {
+
+
+            max-width: 1058px;
+            margin: -57px auto;
+            text-align: center;
+            padding: 8px;
+            margin-right: -57px;
+            border: 1px solid #ccc;
+            margin-left: -56px;
+            box-shadow: 2px 2px 12px #aaa;
+        }
+
+
+
+
+
+        .two {
+
+
+            max-width: 1058px;
+            margin: -57px auto;
+            text-align: center;
+            padding: 8px;
+            margin-right: -57px;
+            border: 1px solid #ccc;
+            margin-left: -56px;
+            box-shadow: 2px 2px 12px #aaa;
+        }
+
+        form {
+            display: block;
+        }
+
+        form.hide {
+            display: none;
+        }
+
+        .toggle-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .toggle-icon:hover {
+            color: blue;
+        }
+
+        .file-upload-icon {
+    font-size: 50px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .input_for_formb {
+    display: none;
+  }
+
+  #label_for_file {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #label_for_file:hover {
+    background-color: #0056b3;
+  }
+
+
+
+        /* Adjustments for small devices */
+        @media (max-width: 576px) {
+            .chatbot-container {
+                bottom: 10px;
+                right: 10px;
+                max-width: calc(100% - 20px);
+            }
+
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+    {% load static %}
+
+    <!-- Navbar (sit on top) -->
+    <div class="nav w3-top">
+        <div class=" w3-bar w3-white w3-card" id="myNavbar">
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-wide">
+                <img src="{% static 'app/logo.png' %}" alt="Logo"
+                    style="height: 50px; width: 100px; margin-right: 10px;">
+            </a>
+            <!-- Right-sided navbar links -->
+            <div class="w3-right w3-hide-small">
+                <a href="{% url 'home' %}" class="w3-bar-item w3-button">ABOUT</a>
+                <a href="{% url 'home' %}" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+                <a href="{% url 'combined_view' %}" class="w3-bar-item w3-button"><i class="fa fa-th"></i> Video
+                    Translation</a>
+                <a href="{% url 'combined_view' %}" class="w3-bar-item w3-button"><i
+                        class="fa-brands fa-rocketchat"></i>
+                    ChatBot</a>
+                <a href="{% url 'home' %}" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+            </div>
+            <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                onclick="w3_open()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Sidebar on small screens when clicking the menu icon -->
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+        style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close
+            ×</a>
+        <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+        <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+        <a href="{% url 'translation' %}" onclick="w3_close()" class="w3-bar-item w3-button">Video Translation</a>
+        <a href="{% url 'chatbot' %}" onclick="w3_close()" class="w3-bar-item w3-button">Chatbot</a>
+        <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+    </nav>
+
+
+
+    <!--DIVISIONING-->
+    <div class="container-fluid full-height">
+        <div class="row full-height">
+
+            <div class="col-md-2 full-height left_div1">
+
+                <div class="right-section">
+
+                    <div class="one">
+
+                        <h1 class="RS_h1">Videos uploaded by {{ user.name }}</h1>
+                        <table>
+                            <tr>
+
+                                <th>Tile</th>
+                                <!--<th>Path</th>-->
+                                <th>ID</th>
+                            </tr>
+                            {% for video in videos %}
+                            <tr>
+
+                                <th><a href="{{ video.uv }}" target="_blank">{{ video.title }}</a></th>
+                                <!--<th>{{ video.uv }} </th> -->
+                                <th>{{ video.id }} </th>
+                            </tr>
+
+                            {% endfor %}
+
+                        </table>
+                    </div>
+
+
+                    <div class="two">
+                        <h1 class="RS_h2">Translated videos of {{ user.name }}</h1>
+                        <table>
+                            <tr>
+
+                                <th>Tile</th>
+                                <!--<th>Path</th> -->
+                                <th>ID</th>
+                            </tr>
+                            {% for translation in translations %}
+                            <tr>
+
+                                <th><a href="{{ translation.tv }}" target="_blank">{{ translation.title }}</a></th>
+                                <!--  <th>{{ translation.tv }} </th> -->
+                                <th>{{ translation.id }} </th>
+                            </tr>
+
+                            {% endfor %}
+
+                        </table>
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>
+            <!--COL1-->
+            <div class="col-md-6 full-height left_div">
+                <!--Form-->
+                <form id="trans_form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <label for="{{ form.title.id_for_label }}">Title </label>
+                    {{ form.title }}
+
+                    <label for="{{ form.uv.id_for_label }}">Upload </label>
+                    {{ form.uv }}
+
+                    <label for="{{ form.source_lang.id_for_label }}">From</label>
+                    {{ form.source_lang }}
+
+                    <label for="{{ form.target_lang.id_for_label }}">To</label>
+                    {{ form.target_lang }}
+
+                    <label for="{{ form.voice_type.id_for_label }}">Voice</label>
+                    {{ form.voice_type }}
+                    <!-- {{ form.as_p }}-->
+
+                    <button type="submit" onclick="submit_trans_Form()" class="btn1"
+                        id="trans_form_button">Upload</button>
+                </form>
+
+                <form id="formB" class="hide" style="text-align: center;" method="post" enctype="multipart/form-data" action="{% url 'combined_view' %}">
+                    {% csrf_token %}
+                    <i class="fas fa-file-upload file-upload-icon"></i>
+                    <input class="input_for_formb" type="file" id="file" name="file" accept=".pdf,.txt" required>
+                    <label id='label_for_file' for="file">Choose a file</label>
+                    <button type="submit" name="formB">Upload</button>
+                </form>
+                <i class="fas fa-exchange-alt toggle-icon" onclick="toggleForms()"></i>
+                <!--Form End-->
+                <h1>Have feedback? <a href="{% url 'feedback' %}">Leave Feedback</a></h1>
+                {% if messages %}
+                <h1>Error</h1>
+                <ul>
+                    {% for message in messages %}
+
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <!--Video Player-->
+                <div id="spinner" style="display: none; text-align: center; padding-top: 15%;">
+                    <img src="{% static 'app/spinner.gif' %}" alt="Loading..." style="width: 200px; height: 200px; ">
+                    <!-- Adjust spinner size as needed -->
+                </div>
+                <div style="margin-top: 4%;" class="embed-responsive embed-responsive-16by9" id="translated-video">
+
+                    {% if translations %}
+                    <video class="embed-responsive-item video" controls style="display: none;">
+                        <source src="{{ translations.last.tv }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    {% else %}
+                    <p>No translated videos available.</p>
+                    {% endif %}
+
+
+                </div>
+
+                <!---/////////////////////////////////////////////--->
+
+            </div>
+
+            <!--COL2-->
+            <!--BCZ OF d-none d-md-block CLASS IT IS ONLY DISPLAYED ON MEDIUM AND LARGE SCREENS-->
+            <div class="col-md-4 full-height d-none d-md-block right_div">
+
+
+                <div class="chatbot-container ">
+                    <!-- <div class="chat-message bot-message">Welcome! How can I assist you today?</div> -->
+                    <!-- Example chat messages -->
+                    <!-- <div class="chat-message user-message">Hello!</div> -->
+                    <!-- <div class="chat-message bot-message">Sure, how can I help?</div> -->
+                    <div id="chat-history"></div>
+                    <div id="spinner2" style="display: none; text-align: center; padding-top: 30%;">
+                        <img src="{% static 'app/spinner2.gif' %}" alt="Loading..." style="width: 75px; height: 75px; ">
+                        <!-- Adjust spinner size as needed -->
+                    </div>
+                    <div class="chat-input-container">
+
+                        <input type="text" class="chat-input" id="query-input" placeholder="Type your message...">
+                        <!-- <button class="send-btn" id="submit-btn">Send</button>    -->
+                        <!-- <button id="clear-btn" class="btn btn-secondary" style="margin-left: 1%;">Clear</button>      -->
+                        <!---///////////////////////////////////////////////////-->
+
+                        <button class='btn block-cube block-cube-hover' type='button' id="submit-btn">
+                            <div class='bg-top'>
+                                <div class='bg-inner'></div>
+                            </div>
+                            <div class='bg-right'>
+                                <div class='bg-inner'></div>
+                            </div>
+                            <div class='bg'>
+                                <div class='bg-inner'></div>
+                            </div>
+                            <div class='text'>
+                                Send
+                            </div>
+                        </button>
+
+                        <button class='btn block-cube block-cube-hover' type='button' id="clear-btn">
+                            <div class='bg-top'>
+                                <div class='bg-inner'></div>
+                            </div>
+                            <div class='bg-right'>
+                                <div class='bg-inner'></div>
+                            </div>
+                            <div class='bg'>
+                                <div class='bg-inner'></div>
+                            </div>
+                            <div class='text'>
+                                Clear
+                            </div>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+
+<script>
+    function toggleForms() {
+      var formA = document.getElementById("trans_form");
+      var formB = document.getElementById("formB");
+  
+      if (formA.classList.contains("hide")) {
+        formA.classList.remove("hide");
+        formB.classList.add("hide");
+      } else {
+        formA.classList.add("hide");
+        formB.classList.remove("hide");
+      }
+    }
+  </script>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#trans_form_button').click(function (event) {
+                event.preventDefault(); // Prevent default button click behavior
+                $('#spinner').show(); // Show spinner
+                $('.video').hide();
+                var formData = new FormData($('#trans_form')[0]); // Get form data
+                $.ajax({
+                    url: $('#trans_form').attr('action'), // Form action URL
+                    type: $('#trans_form').attr('method'), // Form method (POST)
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        // Check if video element exists
+                        var videoElement = $('#translated-video video');
+                        if (videoElement.length > 0) {
+                            // If video element exists, update its source
+                            videoElement.attr('src', $(data).find('source').attr('src'));
+                        } else {
+                            // If video element doesn't exist, append the new content
+                            $('#translated-video').html(data);
+                        }
+                        $('#spinner').hide(); // Hide spinner on success
+                        $('.video').show();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText); // Log any errors to the console
+                        $('#spinner').show(); // Hide spinner on success
+                    }
+                });
+            });
+        });
+
+    </script>
+
+
+    <script>
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+
+
+        // Toggle between showing and hiding the sidebar when clicking the menu icon
+        var mySidebar = document.getElementById("mySidebar");
+
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+            } else {
+                mySidebar.style.display = 'block';
+            }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+    </script>
+
+
+    <script src="{% static 'js/chatbot.js' %}"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>Select the translation</p>
+    {{ form.translation}}
+    <p> Give Feedback and rating:</p>
+    {{ form.feedback }}
+    <button type="submit">Submit Feedback</button>
+  </form>
+  

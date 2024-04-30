@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech Translation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Ubuntu:ital,wght@1,300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/6c4bbd468f.js" crossorigin="anonymous"></script>
+  <style>
+    /* Add your custom CSS styles here */
+
+    body {
+      background-color: #020236;
+      color: white;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #06062e;
+      padding: 10px 20px;
+    }
+
+    nav .left {
+      font-size: 24px;
+      color: white;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .main-section {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .video-box video {
+      max-width: 100%;
+      width: 1200px;
+      /* Set the desired width */
+      height: auto;
+      /* Let the height adjust accordingly */
+      border: 3px solid #0684c1;
+    }
+
+
+    .right-section {
+      flex: 1;
+      padding: 20px;
+      background-color: #f2f2f2;
+      color: #333;
+      overflow: auto;
+      max-width: 300px;
+      /* Adjust this value as needed */
+    }
+
+    .one,
+    .two {
+      max-width: 600px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 12px #aaa;
+    }
+
+    .RS_h1 {
+      background-color: #225a6c;
+      color: white;
+      font-size: 24px;
+      padding: 12px;
+      margin-top: -20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #1c3d59;
+      color: white;
+    }
+
+    th,
+    td {
+      font-size: 18px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 20px;
+      margin-top: 25px;
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", sans-serif
+    }
+
+    body,
+    html {
+      height: 100%;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="w3-top">
+      <div class="w3-bar w3-white w3-card" id="myNavbar">
+        <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-wide">
+          <img src="{% static 'app/logo.png' %}" alt="Logo" style="height: 50px; width: 50px; margin-right: 10px;">
+        </a>
+        <!-- Right-sided navbar links -->
+        <div class="w3-right w3-hide-small">
+          <a href="{% url 'home' %}" class="w3-bar-item w3-button">ABOUT</a>
+          <a href="{% url 'home' %}" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+          <a href="{% url 'translation' %}" class="w3-bar-item w3-button"><i class="fa fa-th"></i> Video Translation</a>
+          <a href="{% url 'chatbot' %}" class="w3-bar-item w3-button"><i class="fa-brands fa-rocketchat"></i>
+            ChatBot</a>
+          <a href="{% url 'home' %}" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+        </div>
+        <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+          onclick="w3_open()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Sidebar on small screens when clicking the menu icon -->
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+      style="display:none" id="mySidebar">
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close
+        ×</a>
+      <a href="{% url 'home' %}" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="{% url 'home' %}" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+      <a href="{% url 'translation' %}" onclick="w3_close()" class="w3-bar-item w3-button">Video Translation</a>
+      <a href="{% url 'chatbot' %}" onclick="w3_close()" class="w3-bar-item w3-button">Chatbot</a>
+      <a href="{% url 'home' %}" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="main-section">
+        <h2 class="h-primary" style="padding-top:50px ">Upload Video</h2>
+        <form id="upload-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" id="upload-btn">Upload</button>
+        </form>
+
+        <div class="video-box">
+            <h1>Last Translated Video</h1>
+            <div id="translated-video">
+                {% if translations %}
+                <video controls>
+                    <source src="{{ translations.last.tv }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                {% else %}
+                <p>No translated videos available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="right-section" style="padding-top:80px ">
+      <div class="one">
+        <h1 class="RS_h1">Translated Videos</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for translation in translations %}
+            <tr>
+              <td><a href="{{ translation.tv }}" target="_blank">{{ translation.title }}</a></td>
+              <td>{{ translation.id }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#upload-form').submit(function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            var formData = new FormData($(this)[0]); // Get form data
+            $.ajax({
+                url: $(this).attr('action'), // Form action URL
+                type: $(this).attr('method'), // Form method (POST)
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#translated-video').html(data); // Replace translated video with new content
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText); // Log any errors to the console
+                }
+            });
+        });
+    });
+</script>
+</body>
+
+</html>
