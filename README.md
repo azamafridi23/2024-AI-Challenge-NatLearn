@@ -77,6 +77,17 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+10) Open your browser and go to http://127.0.0.1:8000/
+
+11) Register and login
+
+12) Go to video translator 
+
+13) Give a title for your video, upload a video shorter that is shorter than 2 minutes. You can use the video available in the demo_video folder, select the source and target language of the video, select the gender voice and click the upload button.
+
+14) Wait until the translated video appears. 
+
+# NOTE: IF THE FRONTEND OF THE PAGE GETS DUPLICATED THEN REFRESH THE PAGE ONCE AND IT WILL SOLVE THIS ISSUE.
 
 
 
