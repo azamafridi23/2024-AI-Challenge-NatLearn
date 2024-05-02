@@ -2,6 +2,9 @@ import subprocess
 
 
 def convert_video_to_audio(input_file, output_file):
+    '''
+    This function is used to convert video to audio
+    '''
     ffmpeg_cmd = [
         "ffmpeg",
         "-i", input_file,

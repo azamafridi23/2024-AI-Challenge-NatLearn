@@ -37,6 +37,9 @@ def make_folder(path='TEMP_FOLDER_FOR_TRANSLATION'):
 
 
 def delete_folder(folder_path='TEMP_FOLDER_FOR_TRANSLATION'):
+    '''
+    Deletes the folder specified in the argument
+    '''
     try:
         # Delete the folder and all its contents recursively
         shutil.rmtree(folder_path)
@@ -47,6 +50,9 @@ def delete_folder(folder_path='TEMP_FOLDER_FOR_TRANSLATION'):
 
 
 def unique_file_name(path):
+    '''
+    Returns a unique name for the text document of the translated video
+    '''
     # Find filename for chatbot docs
     file_name_for_chatbot_docs = None
     i = 0
@@ -60,12 +66,15 @@ def unique_file_name(path):
 
 
 def pipe1(input_file, output_file):  # Video to audio
+    '''
+    This function is used to extract audio from video
+    '''
     convert_video_to_audio(input_file, output_file)
 
 
 def pipe2(input_video_path, source_lang, target_lang, original_audio_path, original_text_path, translated_text_path, translated_audio_folder_path, aligned_text_path, folder_path_for_chatbot_data,voice_type):
     ''' 
-        Video translator transformer
+        This function is used to return the output of STT, TT AND TTS Model
 
     '''
 
@@ -171,21 +180,32 @@ def pipe2(input_video_path, source_lang, target_lang, original_audio_path, origi
 
 # forced synchronization by speedingup
 def pipe3(tuple_list, audios_folder_path):
+    '''
+    Thi function is used to speedup the produced audio for synchronization
+    '''
     speedup_audio_for_timestamps(
         tuple_list, audios_folder_path)
 
 
-def pipe4(tuple_list, path_of_folder_to_merge, original_audio_path, name_of_merged_audio_wav):  # merge audio clipss
+def pipe4(tuple_list, path_of_folder_to_merge, original_audio_path, name_of_merged_audio_wav):  # merge audio clips
+    '''
+    This function is used to merge audio clips in the specified folder to a single audio clip
+    '''
     merge(tuple_list, path_of_folder_to_merge,
           original_audio_path, name_of_merged_audio_wav)
 
 
 def pipe5(input_video_path, new_audio_path, output_video_path):
+    '''
+    This function adds an audio clip to a video
+    '''
     add_audio(input_video_path, new_audio_path, output_video_path)
 
 
 def pipeline(input_video_path, source_lang, target_lang, folder_path_for_chatbot_data='docs_for_chatbot', temp_folder_for_translation_path='TEMP_FOLDER_FOR_TRANSLATION',voice_type=1):
-
+    '''
+    This function is the final pipeline that produces the translated video 
+    '''
     # # # make temp folder for translation
     make_folder(temp_folder_for_translation_path)
 

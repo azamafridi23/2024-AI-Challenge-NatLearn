@@ -1,15 +1,20 @@
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, Video, Translation, Feedback
+from .models import User, Video, Translation
 
 
 class CustomUserCreationForm(UserCreationForm):
+    '''
+    This form is used for user registration
+    '''
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ['name', 'email', 'password1', 'password2']
 
 class VideoForm(forms.ModelForm):
+    '''
+    This form is used when user is uploading videos for translation
+    '''
     class Meta:
         model = Video
         fields = ['title', 'uv','source_lang','target_lang','voice_type'  ] #ed by azam
@@ -19,14 +24,3 @@ class TranslationForm(forms.ModelForm):
         model = Translation
         fields = ['title', 'tv'] 
 
-
-class FeedbackForm(forms.ModelForm):
-    class Meta:
-        model = Feedback
-        fields = ['translation', 'feedback']
-
-    def __init__(self, user, *args, **kwargs):
-        super(FeedbackForm, self).__init__(*args, **kwargs)
-        self.fields['translation'].queryset = Translation.objects.filter(user=user)
-        self.fields['translation'].empty_label = "Select Translation"
-        self.fields['feedback'].widget.attrs.update({'class': 'form-control'})

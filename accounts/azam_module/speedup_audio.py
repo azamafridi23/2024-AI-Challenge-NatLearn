@@ -3,7 +3,9 @@ from pydub import AudioSegment
 
 
 def speedup_audio_for_timestamps(tuple_list, folder_path):
-
+    '''
+    This function is used to speedup the final audio clip according to the length of the video so that the final video is synchronized with the audio
+    '''
     timestamps = [(data[1], data[2]) for data in tuple_list]
     print("timestamps = ", timestamps)
     # List all files in the folder

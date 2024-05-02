@@ -1,3 +1,7 @@
+'''
+These mappings are used for STT,TT, AND TTS MODELS
+'''
+
 dic_for_lang_mapping = {
     # tuple where first index val of the tuple is for STT MODEL, second index val is for TT MODEL and third index val is for TTS MODEL
     # stt: https://github.com/m-bain/whisperX/blob/e909f2f766b23b2000f2d95df41f9b844ac53e49/whisperx/tokenizer.py

@@ -5,6 +5,9 @@ import os
 
 # Create your models here.
 class User(AbstractUser):
+    '''
+    This model is used to store users data
+    '''
     name = models.CharField(max_length=50, null=True)
     email = models.EmailField(max_length=254, unique=True)
 
@@ -15,7 +18,7 @@ class User(AbstractUser):
         self.username = self.email
         super().save(*args, **kwargs)
 
-
+# These tuple values are used for language mapping for STT,TT AND TTS models.
 Source_Lang_Choices = [('english', 'english'), ('chinese', 'chinese'), ('urdu', 'urdu'), ('german', 'german'), ('spanish', 'spanish'), ('russian', 'russian'), ('korean', 'korean'), ('french', 'french'), ('japanses', 'japanses'), ('portugese', 'portugese'), ('turkish', 'turkish'), ('polish', 'polish'), ('dutch', 'dutch'), ('arabic', 'arabic'), ('swedish', 'swedish'), ('italian', 'italian'), ('indoesian', 'indoesian'), ('hindi', 'hindi'), ('finnish', 'finnish'), ('ukrainian', 'ukrainian'), ('romanian', 'romanian'), ('danish', 'danish'), ('hungarian', 'hungarian'), ('tamil', 'tamil'), ('norwegian', 'norwegian'), ('thai', 'thai'), ('persian', 'persian'), ('serbian', 'serbian')]
 
 Target_Lang_Choices = [('english', 'english'), ('chinese', 'chinese'), ('urdu', 'urdu'), ('german', 'german'), ('spanish', 'spanish'), ('russian', 'russian'), ('korean', 'korean'), ('french', 'french'), ('japanses', 'japanses'), ('portugese', 'portugese'), ('turkish', 'turkish'), ('polish', 'polish'), ('dutch', 'dutch'), ('arabic', 'arabic'), ('swedish', 'swedish'), ('italian', 'italian'), ('indoesian', 'indoesian'), ('hindi', 'hindi'), ('finnish', 'finnish'), ('ukrainian', 'ukrainian'), ('romanian', 'romanian'), ('danish', 'danish'), ('hungarian', 'hungarian'), ('tamil', 'tamil'), ('norwegian', 'norwegian'), ('thai', 'thai'), ('persian', 'persian'), ('serbian', 'serbian')]
@@ -23,7 +26,10 @@ Target_Lang_Choices = [('english', 'english'), ('chinese', 'chinese'), ('urdu', 
 Voice_Type_Choices = [('0', 'Male'), ('1', 'Female')]
 
 class Video(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default='ali@natlean.com' )
+    '''
+    This model is used to store data about uploaded videos for translation
+    '''
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default='azam@natlean.com' )
     title = models.CharField(max_length=100)
     uv = models.FileField(upload_to='uploaded_videos/')
 
@@ -42,6 +48,9 @@ class Video(models.Model):
  
 
 class Translation(models.Model):
+    '''
+    This model is used to store data about translated videos 
+    '''
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     tv = models.FileField(upload_to='')
@@ -68,15 +77,6 @@ class Message(models.Model):
     def __str__(self):
         return self.message
     
-
-class Feedback(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    translation = models.ForeignKey(Translation, on_delete=models.CASCADE)
-    feedback = models.TextField()
-    rating = models.PositiveIntegerField(default=0, blank=True, null=True)
-
-    def __str__(self):
-        return f"Feedback for {self.translation.title} by {self.user.username}"
 
 
 

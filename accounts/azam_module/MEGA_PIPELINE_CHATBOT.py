@@ -20,6 +20,9 @@ def format_docs(docs):
 
 
 def prompt_maker():
+    '''
+    This function returns the system prompt that I use for our LLM
+    '''
     system_instruction = """
 As an AI assistant, try to answer the question from the provided context as much as possible.
         if no relavant information is available in the provided context then only answer the question by using your knowledge about the topic.
@@ -34,6 +37,9 @@ As an AI assistant, try to answer the question from the provided context as much
 
 
 def chatbot_init(data_dir):
+    '''
+    This function prepares and returns the chatbot, and RAG chain 
+    '''
     load_dotenv()
     llm = AzureChatOpenAI(
         openai_api_version="2023-05-15",
@@ -79,6 +85,9 @@ def chatbot_init(data_dir):
     return llm, embedding_model, loader, docs, db, retriever, prompt, rag_chain_with_source
 
 def remove_profanity(sentence):
+    '''
+    This function is used to remove profanity from the generated response of LLM
+    '''
     words = sentence.split()
     profanity_words = ['shit','damn'] # sample
     clean_words = [word for word in words if word.lower() not in profanity_words]
@@ -86,6 +95,9 @@ def remove_profanity(sentence):
 
 
 def gen_answer(question, rag_chain, chat_history):
+    '''
+    This function is responsible for returning the final response to the user.
+    '''
     result_json = rag_chain.invoke(question)
     print("Result JSON:", result_json)
     print(f"response = {result_json['answer']}")
