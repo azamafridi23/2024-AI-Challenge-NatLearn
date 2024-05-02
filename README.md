@@ -7,7 +7,10 @@ NatLearn is a multilingual video translator and RAG (retrieval augmented generat
 
 NatLearn uses state-of-the-art AI models and techniques to promote greater accessibility and comprehension in education.
 
-![image2](readme_data/img1.png)
+## Demo Video
+https://github.com/azamafridi23/2024-AI-Challenge-NatLearn/assets/108652143/170e187e-9747-401f-8de0-4102c4bfe1ee
+
+
 
 ## High Level Diagram
 ### Diagram 1
