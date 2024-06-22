@@ -66,6 +66,10 @@ sudo apt install ffmpeg
 7) Install libraries in requirements.text using any of the below method. Try the other if one doesn't work
 - Run the shell script using shell script
 ```
+chmod +x install_requirements.sh
+```
+
+```
 ./install_requirements.sh
 ```
 - Using pip
