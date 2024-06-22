@@ -30,7 +30,8 @@ https://github.com/azamafridi23/2024-AI-Challenge-NatLearn/assets/108652143/170e
 - Embedding Model: Instruct Embedding / OpenAI Ada
 - Vector Database: FAISS / ChromaDB
 
-## Installation
+## Pre requisites
+- Make sure your device is CUDA-Capable device(meaning that it has a GPU and CUDA Enabled)
 
 
 ## Installation
