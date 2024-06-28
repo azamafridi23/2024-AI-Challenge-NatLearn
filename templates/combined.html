@@ -16,14 +16,9 @@
         }
 
         body {
-    
-        margin: 0;
-        padding: 0;
-   
-      }
-
-
-
+            margin: 0;
+            padding: 0;
+        }
 
         .container-fluid {
             display: flex;
@@ -56,7 +51,6 @@
             overflow-y: auto;
             border-bottom: 1px solid #ddd;
             margin-bottom: 10px;
-            height: 100%;
         }
 
         .chat-input {
@@ -74,12 +68,6 @@
             margin-right: 10px;
             /* Add some space between input and buttons */
         }
-
-        .col-md-3 {
-    display: flex;
-    flex-direction: column;
-    height: 90vh;
-}
 
         .send-btn,
         #clear-btn {
@@ -101,8 +89,6 @@
             color: #000;
         }
 
-        /********************************/
-
         input[type="text"],
         input[type="file"],
         select {
@@ -110,7 +96,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
-
             font-size: 15px;
         }
 
@@ -133,8 +118,6 @@
             background-color: #45a049;
         }
 
-        /*******************************/
-
         label {
             font-size: 18px;
             margin-right: 1px;
@@ -142,12 +125,10 @@
         }
 
         .bg-white {
-
             background-color: #332940;
         }
 
         header {
-         
             background-color: #332940;
             color: #fff;
             padding: 20px;
@@ -168,10 +149,8 @@
 
         /* Styles for the sidebar */
         .sidebar {
-
             background-color: #9DB2BF;
             padding: 20px;
-
         }
 
         .sidebar-section {
@@ -179,39 +158,39 @@
         }
 
         nav {
-  background-color:  #332940;
-  color: wheat;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-}
+            background-color: #332940;
+            color: wheat;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
 
-.logo {
-    font-size: 1.8rem;
-}
+        .logo {
+            font-size: 1.8rem;
+        }
 
-.nav-links {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  font-size: 1.2rem;
-}
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-size: 1.2rem;
+        }
 
-.nav-links li {
-  margin-right: 25px;
-}
+        .nav-links li {
+            margin-right: 25px;
+        }
 
-.nav-links li a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-.nav-links li a:hover {
-  color: #ff9900;
-}
+        .nav-links li a:hover {
+            color: #ff9900;
+        }
     </style>
 </head>
 
@@ -220,16 +199,16 @@
         <div class="row" style="background-color: #332940; color: wheat;">
             <div class="col">
                 <nav>
-                    <div class="logo"><img src="{% static 'app/logo.png' %}"
-                        alt="Logo2" style="height: 50px; width: 100px; margin-right: 10px;"></div>
+                    <div class="logo"><img src="{% static 'app/logo.png' %}" alt="Logo2"
+                            style="height: 50px; width: 100px; margin-right: 10px;"></div>
                     <ul class="nav-links">
-                      <li><a href="{% url 'home' %}">Home</a></li>
-                      <li><a href="{% url 'home' %}">About</a></li>
-                      <li><a href="{% url 'home' %}">Services</a></li>
-                      <li><a href="{% url 'combined_view' %}">Video Translation</a></li>
-                      <li><a href="{% url 'combined_view' %}">Chatbot</a></li>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'home' %}">About</a></li>
+                        <li><a href="{% url 'home' %}">Services</a></li>
+                        <li><a href="{% url 'combined_view' %}">Video Translation</a></li>
+                        <li><a href="{% url 'combined_view' %}">Chatbot</a></li>
                     </ul>
-                  </nav>
+                </nav>
             </div>
         </div>
 
@@ -244,7 +223,6 @@
                                     target="_blank">{{video.title }}</a></td>
                         </tr>
                         {% endfor %}
-
                     </table>
                 </div>
                 <div class="sidebar-section" style="flex-grow: 1;height: 300px; overflow-y: auto;"">
@@ -252,16 +230,13 @@
                     <table>
                         {% for translation in translations %}
                         <tr>
-                            <td><a style="color:white; font-size: 18px; text-decoration:none ;" href="{{  translation.tv }}"
-                                    target="_blank">{{translation.title}}</a></td>
+                            <td><a style="color:white; font-size: 18px; text-decoration:none ;"
+                                    href="{{ translation.tv }}" target="_blank">{{translation.title}}</a></td>
                         </tr>
                         {% endfor %}
-
                     </table>
                 </div>
             </div>
-
-
 
             <div class="col-md" style="border: 1px solid #526D82;">
                 <form class="add_padding row gy-2 gx-3 align-items-center justify-content-center" id="trans_form"
@@ -288,15 +263,12 @@
                         {{ form.voice_type }}
                     </div>
                     <div class="col-auto">
-                        <button type="submit" class="submit-btn1" onclick="submit_trans_Form()"
-                            id="trans_form_button">Upload</button>
+                        <button type="submit" class="submit-btn1" id="trans_form_button">Upload</button>
                     </div>
                 </form>
                 <div class="row justify-content-center" style="margin-top: 7%;" id="translated-video">
-
                     <div id="spinner" style="display: none; text-align: center; padding-top: 15%; margin-left: 90%;">
-                        <img src="{% static 'app/spinner.gif' %}" alt="Loading..."
-                            style="width: 200px; height: 200px; ">
+                        <img src="{% static 'app/spinner.gif' %}" alt="Loading..." style="width: 200px; height: 200px;">
                         <!-- Adjust spinner size as needed -->
                     </div>
 
@@ -313,12 +285,12 @@
             <div class="col-md-3" style="background-color: #1F1B24">
                 <div class="chat-container ">
                     <div id="chat-history"></div>
-                    <div id="spinner2" style="display: none; text-align: center; padding-top: 30%; margin-left: 43%; margin-right: 2%; margin-bottom: 10px;">
-                        <img src="{% static 'app/spinner2.gif' %}" alt="Loading..." style="width: 75px; height: 75px; ">
+                    <div id="spinner2"
+                        style="display: none; text-align: center; padding-top: 30%; margin-left: 43%; margin-right: 2%; margin-bottom: 10px;">
+                        <img src="{% static 'app/spinner2.gif' %}" alt="Loading..." style="width: 75px; height: 75px;">
                         <!-- Adjust spinner size as needed -->
                     </div>
                     <div class="chat-input">
-
                         <input type="text" class="user-input" id="query-input" placeholder="Type your message...">
                         <button class="send-btn" id="submit-btn">Send</button>
                         <button id="clear-btn" class="btn btn-secondary" style="margin-left: 1%;">Clear</button>
@@ -344,6 +316,7 @@
                 $('#spinner').show(); // Show spinner
                 $('.video').hide();
                 var formData = new FormData($('#trans_form')[0]); // Get form data
+
                 $.ajax({
                     url: $('#trans_form').attr('action'), // Form action URL
                     type: $('#trans_form').attr('method'), // Form method (POST)
@@ -351,34 +324,33 @@
                     processData: false,
                     contentType: false,
                     success: function (data) {
-                        // Check if video element exists
-                        var videoElement = $('#translated-video video');
-                        if (videoElement.length > 0) {
-                            // If video element exists, update its source
-                            videoElement.attr('src', $(data).find('source').attr('src'));
+                        var parsedData = $.parseHTML(data); // Parse the HTML response
+                        var videoElement = $(parsedData).find('video'); // Find the video element
+                        console.log('data = > ',data)
+                        console.log("\n\n-----------------------------------\n\n")
+                        console.log('parsed = > ',parsedData)
+                        if (videoElement.length === 0) {
+                            
+                            console.log('len == 0')
+                            // Video element not found in the response, append entire content
+                            $('#translated-video').append(parsedData);
                         } else {
-                            // If video element doesn't exist, append the new content
-                            $('#translated-video').html(data);
+                            console.log('len not 0')
+                            videoElement.attr('src', $(data).find('source').attr('src'));
                         }
                         $('#spinner').hide(); // Hide spinner on success
                         $('.video').show();
+                        window.location.reload();
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr.responseText); // Log any errors to the console
-                        $('#spinner').show(); // Hide spinner on success
+                        $('#spinner').hide(); // Hide spinner on error
                     }
                 });
             });
         });
-
     </script>
-
-
-
-
     <script src="{% static 'js/chatbot.js' %}"></script>
-
-
 </body>
 
 </html>

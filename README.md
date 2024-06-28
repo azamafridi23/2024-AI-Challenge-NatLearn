@@ -26,7 +26,7 @@ https://github.com/azamafridi23/2024-AI-Challenge-NatLearn/assets/108652143/170e
 - Text to Speech: Microsoft Azure's Speech Synthesis / Meta's MMS
 
 ### For Chatbot:
-- Large Language Model (LLM): LLama2 / OpenAI GPT 3.5/ Mistral
+- Large Language Model (LLM): LLama2 / OpenAI GPT 3.5, OpenAI GPT 4o/ Mistral
 - Embedding Model: Instruct Embedding / OpenAI Ada
 - Vector Database: FAISS / ChromaDB
 
@@ -87,15 +87,21 @@ python manage.py runserver
 ```
 10) Open your browser and go to http://127.0.0.1:8000/
 
-11) Register and login
+11) Register (Use below dummy data)
+```
+Name: demo
+email: demo@gmail.com
+password: giki12345
+```
 
-12) Go to video translator 
+12) Login using the above id and password
+
+12) Go to video translator from navbar
 
 13) Give a title for your video, upload a video shorter that is shorter than 2 minutes. You can use the video available in the demo_video folder, select the source and target language of the video, select the gender voice and click the upload button.
 
 14) Wait until the translated video appears(the first time you upload a video, it will take longer time because `whisper` model for speech to text translation will be downloaded). 
 
-# NOTE: IF THE FRONTEND OF THE PAGE GETS DUPLICATED THEN REFRESH THE PAGE ONCE AND IT WILL SOLVE THIS ISSUE.
 
 
 
