@@ -2,9 +2,6 @@ from moviepy.editor import VideoFileClip, AudioFileClip
 
 
 def add_audio(input_video_path, new_audio_path, output_video_path):
-    '''
-    This function is used to add new audio to a video
-    '''
     # Load the video clip
     video_clip = VideoFileClip(input_video_path)
 

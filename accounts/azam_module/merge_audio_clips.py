@@ -3,9 +3,6 @@ from pydub import AudioSegment
 
 
 def merge(tuple_list, path_of_folder_to_merge, original_audio_path, name_of_merged_audio_wav):
-    '''
-    This function is used to merge all of the audio files in a folder to a single audio file
-    '''
     timestamps = [(data[1], data[2]) for data in tuple_list]
     original_audio = AudioSegment.from_file(original_audio_path)
     total_len_of_audio_should_be = len(original_audio) / 1000  # in s

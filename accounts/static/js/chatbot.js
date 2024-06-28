@@ -19,14 +19,10 @@ function sendMessage() {
         },
         success: function (data) {
             $('#spinner2').hide();
-        /*   $('#chat-history').append('<strong>You  :</strong> ' + query + '<br>');
-            $('#chat-history').append('<strong>Chatbot :</strong> ' + data.response + '<br>');
-            $('#query-input').val(''); */
-
-
-            $('#chat-history').append('<div style=" display: block; width:50%; clear:both; float:left; margin-top: 10px; background-color: rgb(125, 14, 128); font-size: 1.5rem; color: #fff; border-radius: 10px 10px 10px 0; white-space: pre-wrap; padding: 12px 16px;"><strong style="font-size: 22px;">You: </strong> ' + query + '</div>');
-        $('#chat-history').append('<div style="clear:both; float:right; margin-top: 10px;  background-color: #575357;; font-size: 1.5rem; color: #fff; border-radius: 10px 10px 0 10px; white-space: pre-wrap; padding: 12px 16px; max-width: 75%;"><strong style="font-size:22px;">Chatbot: </strong> ' + data.response + '</div>');
-        $('#query-input').val('');
+            $('#chat-history').append('<div style="display: block; width:50%; clear:both; float:left; margin-top: 10px; background-color: rgb(125, 14, 128); font-size: 1rem; color: #fff; border-radius: 10px 10px 10px 0; white-space: pre-wrap; padding: 12px 16px;"><strong style="font-size: 16px;">Youx: </strong> ' + query + '</div>');
+            $('#chat-history').append('<div style="clear:both; float:right; margin-top: 10px; background-color: #575357; font-size: 1rem; color: #fff; border-radius: 10px 10px 0 10px; white-space: pre-wrap; padding: 12px 16px; max-width: 75%;"><strong style="font-size:16px;">Chatbot: </strong> ' + data.response + '</div>');
+            $('#query-input').val('');
+            $('#chat-history').scrollTop($('#chat-history')[0].scrollHeight); // Scroll to the bottom of the chat history
         }
     });
 }
