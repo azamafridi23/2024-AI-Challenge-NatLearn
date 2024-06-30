@@ -14,9 +14,7 @@ https://github.com/azamafridi23/2024-AI-Challenge-NatLearn/assets/108652143/170e
 
 ## High Level Diagram
 ### Diagram 1
-![image3](readme_data/img2.png)
-### Diagram 2
-![image4](readme_data/img3.png)
+![image3](readme_data/img5.png)
 
 
 ## Models Used
