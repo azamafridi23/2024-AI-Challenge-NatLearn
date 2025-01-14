@@ -1,5 +1,4 @@
-# AI Challenge 2024
-## NatLearn: Multilingual Video Translator and Context Specific Chatbot
+# NatLearn: Multilingual Video Translator and Context Specific Chatbot
 
 ![image1](readme_data/img4.jpg)
 
